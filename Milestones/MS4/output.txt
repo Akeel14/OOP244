@@ -1,0 +1,34 @@
+Script started on Sun 08 Apr 2018 09:19:01 PM EDT
+ljjunio@matrix:~/Documents/OOP244/Milestones/MS4> ms4
+[38;5;9mBegin Testing the Program!
+--------------------------[0m
+
+Linear: one two 
+As is: 
+one
+two
+
+Enter the following: 
+three<ENTER>
+four<ENTER>
+Ctrl^D<ENTER>
+
+three
+four
+one two three four 
+one
+two
+three
+four
+
+sku match
+Product < Perishable
+45|32|131|32
+113.5
+
+[38;5;9m------------------------
+End Testing the Program![0m
+ljjunio@matrix:~/Documents/OOP244/Milestones/MS4> exit
+exit
+
+Script done on Sun 08 Apr 2018 09:19:22 PM EDT
