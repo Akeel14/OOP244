@@ -1,4 +1,4 @@
-Script started on Sat 07 Apr 2018 12:43:35 AM EDT
+Script started on Sat 07 Apr 2018 09:48:26 PM EDT
 ljjunio@matrix:~/Documents/OOP244/Milestones/MS3> ms3
 [38;5;9mBegin Testing the Program!
 --------------------------[0m
@@ -6,7 +6,7 @@ ljjunio@matrix:~/Documents/OOP244/Milestones/MS3> ms3
 Empty Product:
        |                    |   0.00|   0|          |   0|
 u("4321", "Rice"):
-4321   |Rice                |   0.00|   0|          |   1|
+4321   |Rice                |   0.00|   0|          |   0|
 
 Please enter the following information:
  Sku: 1234
@@ -18,31 +18,31 @@ Please enter the following information:
  Quantity needed: 23
 
 Enter Product Info: 
-Sku: 1234
-Name: Blanket
-Unit: pair
-Taxed? (y/n): y
-Price: 12.34
-Quantity on hand: 12
-Quantity Needed: 23
+ Sku: 1234
+ Name (no spaces): Blanket
+ Unit: pair
+ Taxed? (y/n): y
+ Price: 12.34
+ Quantity on hand: 12
+ Quantity needed: 23
 
 Testing:
  s.store(): 
-  s: 1234   |                    |  12.34|  12|      pair|  23|
+  s: 1234   |Blanket             |  13.94|  12|pair      |  23|
  t.load(): 
-  t: 1234   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
+  t: 1234   |Blanket             |  13.94|  12|pair      |  23|
  X(const X&): X v = s
-  v: 1234   |                    |  12.34|  12|      pair|  23|
-  s: 1234   |                    |  12.34|  12|      pair|  23|
+  v: 1234   |Blanket             |  13.94|  12|pair      |  23|
+  s: 1234   |Blanket             |  13.94|  12|pair      |  23|
  X& operator=(const X&): u = t
-  t: 1234   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
-  u: 1234   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
+  t: 1234   |Blanket             |  13.94|  12|pair      |  23|
+  u: 1234   |Blanket             |  13.94|  12|pair      |  23|
  bool operator==(const char*) const: OK
  int operator+=(int): u += 100 
-  u: 1234   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
-  u: 1234   |                    |   0.00|-1217209094|o}·­>u·À…}|   0|
+  u: 1234   |Blanket             |  13.94|  12|pair      |  23|
+  u: 1234   |Blanket             |  13.94| 112|pair      |  23|
  double operator+=(double&, const Product&) : 200 += u
-  ?:200.00 = 200.00
+  ?:1761.75 = 1761.75
 
 Please enter the following information:
  Sku: 1235
@@ -54,37 +54,38 @@ Please enter the following information:
  Quantity needed: 22
 
 Enter Product Info: 
-Sku: 1235
-Name: Jacket
-Unit: n/a
-Taxed? (y/n): n
-Price: 12.35
-Quantity on hand: 11
-Quantity Needed: 22
+ Sku: 1235
+ Name (no spaces): Jacket
+ Unit: n/a
+ Taxed? (y/n): n
+ Price: 12.35
+ Quantity on hand: 11
+ Quantity needed: 22
 
 Testing:
  s.store(): 
-  s: 1235   |                    |  12.35|  11|       n/a|  22|
+  s: 1235   |Jacket              |  12.35|  11|n/a       |  22|
  t.load(): 
-  t: 1235   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
+  t: 1235   |Jacket              |  13.96|  11|n/a       |  22|
  X(const X&): X v = s
-  v: 1235   |                    |  12.35|  11|       n/a|  22|
-  s: 1235   |                    |  12.35|  11|       n/a|  22|
+  v: 1235   |Jacket              |  12.35|  11|n/a       |  22|
+  s: 1235   |Jacket              |  12.35|  11|n/a       |  22|
  X& operator=(const X&): u = t
-  t: 1235   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
-  u: 1235   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
+  t: 1235   |Jacket              |  13.96|  11|n/a       |  22|
+  u: 1235   |Jacket              |  13.96|  11|n/a       |  22|
  bool operator==(const char*) const: OK
  int operator+=(int): u += 100 
-  u: 1235   |                    |   0.00|-1217209194|o}·­>u·À…}|   0|
-  u: 1235   |                    |   0.00|-1217209094|o}·­>u·À…}|   0|
+  u: 1235   |Jacket              |  13.96|  11|n/a       |  22|
+  u: 1235   |Jacket              |  13.96| 111|n/a       |  22|
  double operator+=(double&, const Product&) : 200 += u
-  ?:200.00 = 200.00
+  ?:1749.06 = 1749.06
 
-1235	----The End
+1235	Jacket	n/a	0	12.35	11	22
+----The End
 
 [38;5;9m------------------------
 End Testing the Program![0m
 ljjunio@matrix:~/Documents/OOP244/Milestones/MS3> exit
 exit
 
-Script done on Sat 07 Apr 2018 12:44:13 AM EDT
+Script done on Sat 07 Apr 2018 09:48:59 PM EDT

@@ -1,0 +1,14 @@
+﻿  ms4_tester.cpp
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_fstream<char,struct std::char_traits<char> > & __thiscall AMA::iProduct::store(class std::basic_fstream<char,struct std::char_traits<char> > &,bool)const " (?store@iProduct@AMA@@UBEAAV?$basic_fstream@DU?$char_traits@D@std@@@std@@AAV34@_N@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_fstream<char,struct std::char_traits<char> > & __thiscall AMA::iProduct::load(class std::basic_fstream<char,struct std::char_traits<char> > &)" (?load@iProduct@AMA@@UAEAAV?$basic_fstream@DU?$char_traits@D@std@@@std@@AAV34@@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_ostream<char,struct std::char_traits<char> > & __thiscall AMA::iProduct::write(class std::basic_ostream<char,struct std::char_traits<char> > &,bool)const " (?write@iProduct@AMA@@UBEAAV?$basic_ostream@DU?$char_traits@D@std@@@std@@AAV34@_N@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual class std::basic_istream<char,struct std::char_traits<char> > & __thiscall AMA::iProduct::read(class std::basic_istream<char,struct std::char_traits<char> > &)" (?read@iProduct@AMA@@UAEAAV?$basic_istream@DU?$char_traits@D@std@@@std@@AAV34@@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall AMA::iProduct::operator==(char const *)const " (??8iProduct@AMA@@UBE_NPBD@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual double __thiscall AMA::iProduct::total_cost(void)const " (?total_cost@iProduct@AMA@@UBENXZ)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual char const * __thiscall AMA::iProduct::name(void)const " (?name@iProduct@AMA@@UBEPBDXZ)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual void __thiscall AMA::iProduct::quantity(int)" (?quantity@iProduct@AMA@@UAEXH@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall AMA::iProduct::qtyNeeded(void)const " (?qtyNeeded@iProduct@AMA@@UBEHXZ)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall AMA::iProduct::quantity(void)const " (?quantity@iProduct@AMA@@UBEHXZ)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual int __thiscall AMA::iProduct::operator+=(int)" (??YiProduct@AMA@@UAEHH@Z)
+MyProduct.obj : error LNK2001: unresolved external symbol "public: virtual bool __thiscall AMA::iProduct::operator>(class AMA::iProduct const &)const " (??OiProduct@AMA@@UBE_NABV01@@Z)
+C:\Users\leanj\Documents\Seneca\OOP244\Labs\Milestones\MS4\Debug\MS4.exe : fatal error LNK1120: 12 unresolved externals

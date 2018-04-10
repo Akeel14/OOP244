@@ -1,10 +1,10 @@
 
-In line number 9 of your output:
+In line number 31 of your output:
 The output should be:
-4321   |Rice                |   0.00|   0|          |   0|
+  s: 1234   |Blanket             |  13.94|  12|pair      |  23|
 But your output is: 
-4321   |Rice                |   0.00|   0|          |   1|
-                                                        ^
---------------------------------------------------------|
-Professor's character ASCII code: hex(30), dec(48)
-un-matched character ASCII code: hex(31), dec(49)
+  s: 1234   |Blanket             |  12.34|  12|pair      |   1|
+                                     ^
+-------------------------------------|
+Professor's character ASCII code: hex(33), dec(51)
+un-matched character ASCII code: hex(32), dec(50)
