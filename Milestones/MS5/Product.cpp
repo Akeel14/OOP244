@@ -4,6 +4,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <memory>
 #include <fstream>
 #include <iomanip>
@@ -162,14 +163,14 @@ namespace AMA
 		return *this;
 	}
 
-	std::fstream &Product::store(std::fstream &file, bool newLine) const
+	fstream &Product::store(fstream &file, bool newLine) const
 	{
 		file << mp_Pr_Type << ',' << mp_Pr_Sku << ',' << mp_Pr_Unit << ',' << mp_Address_Pr_Name << ',' << mp_Quantity_Pr_OnHand << "," << mp_Pr_Taxable << "," << mp_Price_Pr_SingleBeforeTax << "," << mp_Quantity_Pr_Needed;
 		if (newLine)
 			file << endl;
 		return file;
 	}
-	std::fstream &Product::load(std::fstream &file)
+	fstream& Product::load(fstream& file)
 	{
 		Product temp;
 
@@ -334,7 +335,7 @@ namespace AMA
 	int Product::operator+=(int unitsToBeAdded)
 	{
 		if (unitsToBeAdded > 0)
-		{
+		{	
 			mp_Quantity_Pr_OnHand += unitsToBeAdded;
 			return mp_Quantity_Pr_OnHand;
 		}

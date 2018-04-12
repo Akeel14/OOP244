@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "xmemory0": "cpp"
+        "xmemory0": "cpp",
+        "iosfwd": "cpp",
+        "cmath": "cpp",
+        "istream": "cpp",
+        "ostream": "cpp"
     }
 }

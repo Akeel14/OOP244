@@ -17,5 +17,34 @@
     <ClCompile Include="ms5_tester.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ErrorState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Perishable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Product.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Date.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ErrorState.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="iProduct.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Perishable.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Product.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
