@@ -92,6 +92,8 @@ namespace AMA
 			mp_Address_Pr_Name[length] = '\0';
 		}
 	}
+
+	// iProduct members
 	const char *Product::name() const
 	{
 		return (mp_Address_Pr_Name[0] == '\0') ? nullptr : mp_Address_Pr_Name;
@@ -325,9 +327,9 @@ namespace AMA
 	{
 		return (strcmp(mp_Pr_Sku, address) > 0) ? true : false;
 	}
-	bool Product::operator>(const Product &other) const
+	bool Product::operator>(const iProduct &other) const
 	{
-		return (strcmp(mp_Address_Pr_Name, other.mp_Address_Pr_Name) > 0) ? true : false;
+		return (strcmp(mp_Address_Pr_Name, other.name()) > 0) ? true : false;
 	}
 	int Product::operator+=(int unitsToBeAdded)
 	{
@@ -339,16 +341,16 @@ namespace AMA
 		else
 			return mp_Quantity_Pr_OnHand;
 	}
-	std::ostream &operator<<(std::ostream &os, const Product &other)
+	std::ostream &operator<<(std::ostream &os, const iProduct &other)
 	{
 		return other.write(os, true);
 	}
-	std::istream &operator>>(std::istream &is, Product &other)
+	std::istream &operator>>(std::istream &is, iProduct &other)
 	{
 		other.read(is);
 		return is;
 	}
-	double operator+=(double &total, const Product &other)
+	double operator+=(double &total, const iProduct &other)
 	{
 		return total + other.total_cost();
 	}
