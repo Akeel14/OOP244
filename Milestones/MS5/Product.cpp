@@ -236,26 +236,29 @@ namespace AMA
 
 		bool yn, y, n;
 
-		cout << " Sku: ";
-		is >> sku;
-
-		cout << " Name (no spaces): ";
-		is >> address;
-
-		cout << " Unit: ";
-		is >> unit;
-
-		cout << " Taxed? (y/n): ";
-		is >> tax;
-
-		// Check if tax is any other letter than y or Y
-		y = tax == 'y' || tax == 'Y'; // must be true
-		n = tax == 'n' || tax == 'N';
-		yn = y || n;
-		
-		// This means only yn
-		if (yn)
+		if (!is.fail())
 		{
+			mp_Err.clear();
+
+			cout << " Sku: ";
+			is >> sku;
+
+			cout << " Name (no spaces): ";
+			is >> address;
+
+			cout << " Unit: ";
+			is >> unit;
+
+			cout << " Taxed? (y/n): ";
+			is >> tax;
+
+			// Check if tax is any other letter than y or Y
+			y = tax == 'y' || tax == 'Y'; // must be true
+			n = tax == 'n' || tax == 'N';
+			yn = y || n;
+
+			// This means only yn
+
 			if (y)
 			{
 				taxable = true;
@@ -264,47 +267,46 @@ namespace AMA
 			{
 				taxable = false;
 			}
-		}
-		else
-		{
-			is.setstate(std::ios::failbit);
-			error.message("Only(Y)es or (N)o are acceptable");
-		}
+			else
+			{
+				is.setstate(std::ios::failbit);
+				error.message("Only(Y)es or (N)o are acceptable");
+				cout << "Stored error message: " << error.message() << endl;
+			}
 
-		if (!is.fail())
-		{
-			cout << " Price: ";
-			is >> beforeTax;
-			if (is.fail())
-				error.message("Invalid Price Entry");
-		}
+			if (!is.fail())
+			{
+				cout << " Price: ";
+				is >> beforeTax;
+				if (is.fail())
+					error.message("Invalid Price Entry");
+			}
 
-		if (!is.fail())
-		{
-			cout << " Quantity on hand: ";
-			is >> onHand;
-			if (is.fail())
-				error.message("Invalid Quantity Entry");
-		}
+			if (!is.fail())
+			{
+				cout << " Quantity on hand: ";
+				is >> onHand;
+				if (is.fail())
+					error.message("Invalid Quantity Entry");
+			}
 
-		if (!is.fail())
-		{
-			cout << " Quantity needed: ";
-			is >> needed;
-			if (is.fail())
-				error.message("Invalid Quantity Needed Entry");
-		}
+			if (!is.fail())
+			{
+				cout << " Quantity needed: ";
+				is >> needed;
+				if (is.fail())
+					error.message("Invalid Quantity Needed Entry");
+			}
 
-		// Check if there are no error messages - If the istream object has accepted all input successfully
-		// stores the input values accepted in a temporary object and copy assigns it to the current object
-		if (!is.fail())
-		{
-			Product temp = Product(sku, address, unit, onHand, taxable, beforeTax, needed);
-			*this = temp;
+			// Check if there are no error messages - If the istream object has accepted all input successfully
+			// stores the input values accepted in a temporary object and copy assigns it to the current object
+			if (!is.fail())
+			{
+				Product temp = Product(sku, address, unit, onHand, taxable, beforeTax, needed);
+				*this = temp;
+			}
 		}
-
-		delete[] address;
-		address = nullptr;
+		
 		return is;
 	}
 
@@ -360,8 +362,7 @@ namespace AMA
 	}
 	std::istream &operator>>(std::istream &is, iProduct &other)
 	{
-		other.read(is);
-		return is;
+		return other.read(is);
 	}
 	double operator+=(double &total, const iProduct &other)
 	{

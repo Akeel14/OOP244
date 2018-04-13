@@ -11,6 +11,7 @@
 /////////////////////////////////////////////////////////////////
 #ifndef AMA_DATE_H
 #define AMA_DATE_H
+#include <iostream>
 
 namespace AMA
 {

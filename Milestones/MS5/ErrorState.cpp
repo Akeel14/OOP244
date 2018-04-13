@@ -11,15 +11,15 @@ using namespace std;
 namespace AMA
 {
     ErrorState::ErrorState(const char* errorMessage)
-    {
+    {  
         if (errorMessage == nullptr)
         {
             m_MessageAddress = nullptr;
         }
         else
         {
-            m_MessageAddress = new char[strlen(errorMessage) + 1];
-            strcpy(m_MessageAddress, errorMessage);
+			m_MessageAddress = new char[strlen(errorMessage) + 1];
+			strcpy(m_MessageAddress, errorMessage);
         }
     }
 
@@ -44,11 +44,12 @@ namespace AMA
     void ErrorState::message(const char* str)
     {
 		int length = strlen(str);
+
         delete[] m_MessageAddress;
-        m_MessageAddress = new char[length];
+        
+		m_MessageAddress = new char[length];
         strncpy(m_MessageAddress, str, length);
 		m_MessageAddress[length] = '\0';
-
     }
 
     const char* ErrorState::message() const
