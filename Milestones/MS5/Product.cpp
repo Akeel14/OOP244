@@ -4,6 +4,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
+#include <cctype>
 #include <cstring>
 #include <memory>
 #include <fstream>
@@ -233,6 +234,8 @@ namespace AMA
 		bool taxable;
 		ErrorState error;
 
+		bool yn, y, n;
+
 		cout << " Sku: ";
 		is >> sku;
 
@@ -245,13 +248,22 @@ namespace AMA
 		cout << " Taxed? (y/n): ";
 		is >> tax;
 
-		if (tax == 'Y' || tax == 'y')
+		// Check if tax is any other letter than y or Y
+		y = tax == 'y' || tax == 'Y'; // must be true
+		n = tax == 'n' || tax == 'N';
+		yn = y || n;
+		
+		// This means only yn
+		if (yn)
 		{
-			taxable = true;
-		}
-		else if (tax == 'N' || tax == 'n')
-		{
-			taxable = false;
+			if (y)
+			{
+				taxable = true;
+			}
+			if (n)
+			{
+				taxable = false;
+			}
 		}
 		else
 		{

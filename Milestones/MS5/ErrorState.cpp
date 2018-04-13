@@ -40,11 +40,15 @@ namespace AMA
         return (m_MessageAddress == nullptr) ? true : false;
     }
 
+	// ERROR: str is not copying to m_MessageAddress
     void ErrorState::message(const char* str)
     {
+		int length = strlen(str);
         delete[] m_MessageAddress;
-        m_MessageAddress = new char[strlen(str) + 1];
-        strcpy(m_MessageAddress, str);
+        m_MessageAddress = new char[length];
+        strncpy(m_MessageAddress, str, length);
+		m_MessageAddress[length] = '\0';
+
     }
 
     const char* ErrorState::message() const

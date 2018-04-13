@@ -30,9 +30,9 @@ namespace AMA
 		int mp_Quantity_Pr_Needed;				// An integer that holds the quantity of the product needed; that is, the number of units needed
 		double mp_Price_Pr_SingleBeforeTax;		// A double that holds the price of a single unit of the product before any taxes
 		bool mp_Pr_Taxable;						// A bool that identifies the taxable status of the product; its value is true if the product is taxable
-		ErrorState mp_Err;						// An ErrorState object that holds the error state of the Product object
 	
 	protected:
+		ErrorState mp_Err;						// An ErrorState object that holds the error state of the Product object
 		void name(const char* nameAddress);		// This function receives the address of a C-style null-terminated string that holds the name of the product
 		const char* name() const;				// This query returns the address of the C-style string that holds the name of the product
 		const char* sku() const;				// This query returns the address of the C-style string that holds the sku of the product
