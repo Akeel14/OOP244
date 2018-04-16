@@ -1,19 +1,13 @@
-// Final Project Milestone 1
-//
-// Version 1.0
-// Date: 3/13/2018
+// File: Date.h
 // Author: Lean Junio
-// Description
-//
-// Revision History
-// -----------------------------------------------------------
-// Name               Date                 Reason
-/////////////////////////////////////////////////////////////////
+// Desc: Header file for Date Module
+
 #ifndef AMA_DATE_H
 #define AMA_DATE_H
+
 #include <iostream>
 
-namespace AMA
+namespace AMA 
 {
 	const int NO_ERROR = 0;
 	const int CIN_FAILED = 1;
@@ -26,11 +20,6 @@ namespace AMA
 
 	class Date
 	{
-	private:
-		int m_year, m_month, m_day, m_comparator, m_errorState;
-		int mdays(int, int) const;
-		void errCode(int errorCode);
-
 	public:
 		Date();
 		Date(int year, int month, int day);
@@ -44,8 +33,20 @@ namespace AMA
 		bool operator>=(const Date& rhs) const;
 		std::istream& read(std::istream& istr);
 		std::ostream& write(std::ostream& ostr) const;
+
+	private:
+		int m_year, m_month, m_day, m_comparator, m_errorState;
+
+		int mdays(int month, int year) const;
+		void errCode(int errorCode);
+		bool checkParams(int year, int month, int day);
+		bool checkErrorCode(int errorCode);
 	};
-		std::ostream& operator<<(std::ostream& ostr, const Date&);
-		std::istream& operator>>(std::istream& istr, Date&);		
+
+	std::ostream& operator<<(std::ostream& ostr, const Date&);
+	std::istream& operator>>(std::istream& istr, Date&);
 }
-#endif
+
+#endif // !AMA_DATE_H
+
+

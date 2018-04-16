@@ -1,205 +1,241 @@
-// Final Project Milestone 1
-//
-// Version 1.0
-// Date: 3/13/2018
+// File: Date.cpp
 // Author: Lean Junio
-// Description
-//
-// Revision History
-// -----------------------------------------------------------
-// Name               Date                 Reason
-/////////////////////////////////////////////////////////////////
+// Desc: Implementation file for Date Module
+
 #include <iostream>
-#include<iomanip>
 #include "Date.h"
 using namespace std;
 
 namespace AMA
 {
-	// Set the attributes to a safe empty state
+	// Set all members to safe empty states
 	Date::Date()
 	{
 		m_year = 0;
 		m_month = 0;
 		m_day = 0;
 		m_comparator = 0;
-		m_errorState = 0;
+		m_errorState = NO_ERROR;
 	}
 
-	// Checks if the date is valid and saves the data if it is
+	// Valides and stores parameter values
 	Date::Date(int year, int month, int day)
-	{
-		bool yearValid = (year >= min_year || year <= max_year) && year > 0;
-		int daysInMonth = mdays(month, year);
-		bool daysInMonthValid = daysInMonth != 13 && day <= daysInMonth;
-
-		if (yearValid && daysInMonthValid)
+	{	
+		// If all the parameters are valid
+		if (checkParams(year, month, day))
 		{
 			m_year = year;
 			m_month = month;
 			m_day = day;
 			m_errorState = NO_ERROR;
-			m_comparator = year * 372 + month * 13 + day;			
+			m_comparator = year * 372 + month * 13 + day;
 		}
 		else
-		{
 			*this = Date();
-			m_errorState = NO_ERROR;
-		}
 	}
-	
-	// Sets the error state variable to one of the values listed
-	void Date::errCode(int errorCode)
-	{
-		m_errorState = errorCode;
-	}
-	// Return the error state as an error code value
-	int Date::errCode() const
+
+	// Returns m_errorState
+	int Date::errCode(void) const
 	{
 		return m_errorState;
 	}
 
-	// Retun true if m_errorState != NO_ERROR
-	bool Date::bad() const
+	// Returns true if m_errorState = NO_ERROR
+	bool Date::bad(void) const
 	{
-		return m_errorState == NO_ERROR;
+		if (m_errorState == NO_ERROR)
+			return true;
+		else
+			return m_errorState;
 	}
 
-
-	// compare if rhs == this
-	bool Date::operator==(const Date& rhs) const
+	// Check if the compared dates are identical
+	bool Date::operator==(const Date & rhs) const
 	{
-		bool day = this->m_day == rhs.m_day;
-		bool month = this->m_month == rhs.m_month;
-		bool year = this->m_year == rhs.m_year;
-		
-		return (day && month && year);
+		bool day = m_day == rhs.m_day;
+		bool month = m_month == rhs.m_month;
+		bool year = m_year == rhs.m_year;
+
+		if (day && month && year)
+			return true;
+		else
+			return false;
 	}
 
-	// compare if rhs != this
-	bool Date::operator!=(const Date& rhs) const
+	// Check if the compared dates are NOT identical
+	bool Date::operator!=(const Date & rhs) const
 	{
+		// if the *this and rhs are not identical, return true else return false
 		return !(*this == rhs);
 	}
 
-	// check if this < rhs
-	bool Date::operator<(const Date& rhs) const
+	// check if the left date is lower than the date on the right
+	bool Date::operator<(const Date & rhs) const
 	{
-		bool lessYear = this->m_year < rhs.m_year;
-		bool lessMonth = this->m_month < rhs.m_month;
-		bool lessDay = this->m_day < rhs.m_day;
-
+		bool lessYear = m_year < rhs.m_year;
+		bool lessMonth = m_month < rhs.m_month;
+		bool lessDay = m_day < rhs.m_day;
+		
+		// check first if year is lower, then month, then day
 		if (lessYear)
-		{
 			return true;
-		}
 		else if (lessMonth)
-		{
 			return true;
-		}
 		else if (lessDay)
-		{
 			return true;
-		}
 		else
-		{
 			return false;
-		}
 	}
 
-	// check if this > rhs
-	bool Date::operator>(const Date& rhs) const
+	// Check if the left date is greater than the date on the right
+	bool Date::operator>(const Date & rhs) const
 	{
-		return !(*this < rhs);
+		bool equal = *this == rhs;
+		bool leftLessRight = *this < rhs;
+
+		if (equal || leftLessRight)
+			return false;
+		else
+			return true;
 	}
 
-	// Check if this <= rhs
-	bool Date::operator<=(const Date& rhs) const
+	// Check if the left <= rhs
+	bool Date::operator<=(const Date & rhs) const
 	{
-		return *this < rhs || *this == rhs;
+		bool equal = *this == rhs;
+		bool leftLessRight = *this < rhs;
+
+		if (equal || leftLessRight)
+			return true;
+		else
+			return false;
 	}
 
-	// Check if this >= rhs
-	bool Date::operator>=(const Date& rhs) const
+	// Check if left >= right
+	bool Date::operator>=(const Date & rhs) const
 	{
-		return *this > rhs || *this == rhs;		
+		bool equal = *this == rhs;
+		bool leftGreaterRight = *this > rhs;
+		
+		if (equal || leftGreaterRight)
+			return true;
+		else
+			return false;
 	}
 
-	// works with an istream object to read a date from the console
-	std::istream& Date::read(std::istream& istr)
+	// Reads from the console in YYYY/MM/DD
+	std::istream & Date::read(std::istream & istr)
 	{
-		char symbol;
-		istr.clear();
-		istr >> m_year >> symbol >> m_month >> symbol >> m_day;
+		char symbolToIgnore;
 
-		if (istr.fail())
+		errCode(NO_ERROR);
+		istr >> m_year >> symbolToIgnore >> m_month >> symbolToIgnore >> m_day;
+
+		if (cin.fail() || istr.fail())
 		{
 			*this = Date();
 			errCode(CIN_FAILED);
 		}
-		else if (min_year > m_year || m_year > max_year)
+
+		else if (!checkParams(m_year, m_month, m_day))
 		{
-			*this = Date();
-			errCode(YEAR_ERROR);
-		}
-		else if (1 > m_month || m_month > 12)
-		{
-			*this = Date();
-			errCode(MON_ERROR);
-		}
-		else if (m_day > mdays(m_month, m_year))
-		{
-			*this = Date();
-			errCode(DAY_ERROR);
+			istr.clear();
+			return istr;
 		}
 
-		//istr.clear();
+		istr.clear();
 		return istr;
 	}
 
-	// Works with an ostream object to print a date to the console
-	std::ostream& Date::write(std::ostream& ostr) const
+	// Writes the date to an ostr object
+	std::ostream & Date::write(std::ostream & ostr) const
 	{
-		char symbol = '/';
-		// For year
-		ostr << m_year << symbol;
+		ostr << m_year << "/";
+		(m_month < 10) ? ostr << 0 << m_month << "/" : ostr << m_month << "/";
+		(m_day < 10) ? ostr << 0 << m_day << "/" : ostr << m_day;
 
-		// If the m_month < 10, add a zero before the month
-		if (m_month < 10)
-		{
-			ostr << 0;
-		}
-
-		// In all cases, add the month
-		ostr << m_month << symbol;
-
-		if (m_day < 10)
-		{
-			ostr << 0;
-		}
-
-		ostr << m_day;
-
-		// Return the output stream that was created
 		return ostr;
 	}
 
-	// Returns the number of days in month of year
+	// Checks if month = 1 to 13
 	int Date::mdays(int mon, int year) const
 	{
-		int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, -1};
+		int days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31, -1 };
 		int month = mon >= 1 && mon <= 12 ? mon : 13;
 		month--;
 		return days[month] + int((month == 1) * ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0));
 	}
 
-	std::istream& operator>>(std::istream& istr, Date& s)
+	// Set error state to one of the constants
+	void Date::errCode(int errorCode)
 	{
-		return s.read(istr);
+		if (checkErrorCode(errorCode))
+			m_errorState = errorCode;
+		else
+			cout << "Entered errorCode (range: 0 - 4): " << errorCode << endl;
 	}
 
-	std::ostream& operator<<(std::ostream& ostr, const Date& k)
+	// Return true if parameters are valid
+	bool Date::checkParams(int year, int month, int day)
 	{
-		return k.write(ostr);
+		// Check if the parameters all have values
+		bool missingParameter = !year || !month || !day;		
+
+		bool year_range = year >= min_year && year <= max_year;
+		bool month_range = month >= 1 && month <= 12;
+		bool day_range = day >= 1 && day <= 31;
+
+		// If all the parameters have values, check if they have the correct ranges
+		if (!missingParameter)
+		{
+			// Iff al the parameters are within their ranges
+			if (year_range && month_range && day_range)
+				return true;
+			else
+			{
+				if (!year_range)
+				{
+					*this = Date();
+					errCode(YEAR_ERROR);
+				}
+
+				else if (!month_range)
+				{
+					*this = Date();
+					errCode(MON_ERROR);
+				}
+
+				else if (!day_range || m_day > mdays(m_month, m_year))
+				{
+					*this = Date();
+					errCode(DAY_ERROR);
+				}
+
+				return false;
+			}
+		}
+		else
+			return false;
 	}
+
+	// Check if errorCode is valid
+	bool Date::checkErrorCode(int errorCode)
+	{
+		if (errorCode >= 0 && errorCode <= 4)
+			return true;
+		else
+			return false;
+	}
+
+	// Print out the date in the console
+	std::ostream & operator<<(std::ostream & ostr, const Date &other)
+	{
+		return other.write(ostr);
+	}
+
+	// read the date from the console
+	std::istream & operator>>(std::istream & istr, Date &other)
+	{
+		return other.read(istr);
+ 	}
 }

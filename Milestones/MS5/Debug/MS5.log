@@ -1,2 +1,10 @@
 ﻿  Product.cpp
-  MS5.vcxproj -> C:\Users\leanj\Documents\Seneca\OOP244\Labs\Milestones\MS5\Debug\MS5.exe
+c:\users\leanj\source\repos\school\oop244\milestones\ms5\ms5\ms5\product.cpp(33): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(337): note: see declaration of 'strncpy'
+c:\users\leanj\source\repos\school\oop244\milestones\ms5\ms5\ms5\product.cpp(38): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(337): note: see declaration of 'strncpy'
+c:\users\leanj\source\repos\school\oop244\milestones\ms5\ms5\ms5\product.cpp(68): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(337): note: see declaration of 'strncpy'
+c:\users\leanj\source\repos\school\oop244\milestones\ms5\ms5\ms5\product.cpp(71): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(337): note: see declaration of 'strncpy'
+  MS5.vcxproj -> C:\Users\leanj\source\repos\School\OOP244\Milestones\MS5\MS5\Debug\MS5.exe

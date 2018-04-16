@@ -1,0 +1,10 @@
+﻿  ErrorState.cpp
+c:\users\leanj\documents\seneca\oop244\labs\milestones\ms3\errorstate.cpp(23): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(132): note: see declaration of 'strcpy'
+c:\users\leanj\documents\seneca\oop244\labs\milestones\ms3\errorstate.cpp(52): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.16299.0\ucrt\string.h(337): note: see declaration of 'strncpy'
+  ms3_tester.cpp
+  MyProduct.cpp
+  Product.cpp
+  Generating Code...
+  milestone3.vcxproj -> C:\Users\leanj\Documents\Seneca\OOP244\Labs\Milestones\MS3\milestone3\Debug\milestone3.exe

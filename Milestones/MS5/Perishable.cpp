@@ -1,86 +1,96 @@
+// File: Perishable.cpp
+// Author: Lean Junio
+// Description: Implementation file for Perishable module
+
 #include <iostream>
 #include "Perishable.h"
-#include "Product.h"
-#include "Date.h"
 using namespace std;
-using namespace AMA;
 
 namespace AMA
 {
-    Perishable::Perishable()
-    {
-        Product('P');
-		mp_Err.clear();
-    }
+	Perishable::Perishable() : Product('P')
+	{
+		er.clear();
+	}
 
-    fstream& Perishable::store(fstream& file, bool newLine) const
-    {
+	std::fstream & Perishable::store(std::fstream & file, bool newLine) const
+	{
 		Product::store(file, false);
-		(newLine) ? file << "," << exp << endl : file << ",";
-        return file;
-    }
-
-	fstream& Perishable::load(fstream& file)
+		file << ',' << m_date << endl;
+		return file;
+	}
+	std::fstream & Perishable::load(std::fstream & file)
 	{
 		Product::load(file);
-		exp.read(file);
+		m_date.read(file);
 		file.ignore();
 		return file;
 	}
-
-	ostream& Perishable::write(ostream& os, bool linear) const
+	std::ostream & Perishable::write(std::ostream & os, bool linear) const
 	{
 		Product::write(os, linear);
 
 		if (isClear() && !isEmpty())
 		{
-			if (linear) 
-				exp.write(os);
+			if (linear)
+				m_date.write(os);
 			else
 			{
-				os << "\nExpiry date: ";
-				exp.write(os);
+				os << "\n Expiry date: ";
+				m_date.write(os);
 			}
 		}
 		return os;
 	}
-
-	istream& Perishable::read(istream& is)
+	std::istream & Perishable::read(std::istream & is)
 	{
 		is.clear();
 		Product::read(is);
 
-		if (mp_Err.isClear()) {
-			std::cout << "Expiry date (YYYY/MM/DD): ";
-			exp.read(is);
+		if (er.isClear()) 
+		{
+			cout << " Expiry date (YYYY/MM/DD): ";
+			m_date.read(is);
 		}
 
-		if (exp.errCode() == CIN_FAILED) {
-			mp_Err.clear();
-			mp_Err.message("Invalid Date Entry");
+		if (m_date.errCode() == CIN_FAILED)
+		{
+			er.clear();
+			er.message("Invalid Date Entry");
 		}
-		if (exp.errCode() == YEAR_ERROR) {
-			mp_Err.message("Invalid Year in Date Entry");
+
+		if (m_date.errCode() == YEAR_ERROR)
+		{
+			er.message("Invalid Year in Date Entry");
 		}
-		if (exp.errCode() == MON_ERROR) {
-			mp_Err.clear();
-			mp_Err.message("Invalid Month in Date Entry");
+
+		if (m_date.errCode() == MON_ERROR)
+		{
+			er.clear();
+			er.message("Invalid Month in Date Entry");
 		}
-		if (exp.errCode() == DAY_ERROR) {
-			mp_Err.clear();
-			mp_Err.message("Invalid Day in Date Entry");
+
+		if (m_date.errCode() == DAY_ERROR)
+		{
+			er.clear();
+			er.message("Invalid Day in Date Entry");
 		}
-		if (exp.errCode()) {
+
+		if (m_date.errCode())
+		{
 			is.setstate(std::ios::failbit);
 		}
-		if (exp.errCode() != CIN_FAILED && exp.errCode() != YEAR_ERROR && exp.errCode() != MON_ERROR && exp.errCode() != DAY_ERROR) {
-			mp_Err.clear();  //clear if there is no errorcodmp_Err
+
+		if (m_date.errCode() != CIN_FAILED && m_date.errCode() != YEAR_ERROR && m_date.errCode() != MON_ERROR && m_date.errCode() != DAY_ERROR)
+		{
+			er.clear();
 		}
+
 		return is;
 	}
-
-	const Date& Perishable::expiry() const
+	const Date & Perishable::expiry() const
 	{
-		return exp;
+		return m_date;
 	}
 }
+

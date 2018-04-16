@@ -1,68 +1,69 @@
+// File: ErrorState.cpp
 // Author: Lean Junio
-// Date: 3/19/2018
-// Description: Implmentation file for ErrorState module
+// Description: Implementation for ErrorState module
 
 #include <iostream>
 #include <cstring>
-#include <string>
 #include "ErrorState.h"
 using namespace std;
+using namespace AMA;
 
 namespace AMA
 {
-    ErrorState::ErrorState(const char* errorMessage)
-    {  
-        if (errorMessage == nullptr)
-        {
-            m_MessageAddress = nullptr;
-        }
-        else
-        {
-			m_MessageAddress = new char[strlen(errorMessage) + 1];
-			strcpy(m_MessageAddress, errorMessage);
-        }
-    }
-
-    ErrorState::~ErrorState()
-    {
-        delete[] m_MessageAddress;
-        m_MessageAddress = nullptr;
-    }
-
-    void ErrorState::clear()
-    {
-        delete[] this->m_MessageAddress;
-        m_MessageAddress = nullptr;
-    }
-
-    bool ErrorState::isClear() const
-    {
-        return (m_MessageAddress == nullptr) ? true : false;
-    }
-
-	// ERROR: str is not copying to m_MessageAddress
-    void ErrorState::message(const char* str)
-    {
+	ErrorState::ErrorState(const char * errorMessage)
+	{
+		if (errorMessage != nullptr)
+		{
+			int length = strlen(errorMessage);
+			m_message = new char[length];
+			for (int i = 0; i < length; i++)
+			{
+				m_message[i] = errorMessage[i];
+			}
+			m_message[length] = '\0';
+		}
+		else
+			m_message = nullptr;
+	}
+	ErrorState::~ErrorState()
+	{
+		delete[] m_message;
+		m_message = nullptr;
+	}
+	void ErrorState::clear()
+	{
+		delete[] m_message;
+		m_message = nullptr;
+	}
+	bool ErrorState::isClear() const
+	{
+		return (m_message == nullptr) ? true : false;
+	}
+	void ErrorState::message(const char * str)
+	{
 		int length = strlen(str);
 
-        delete[] m_MessageAddress;
-        
-		m_MessageAddress = new char[length];
-        strncpy(m_MessageAddress, str, length);
-		m_MessageAddress[length] = '\0';
-    }
+		delete[] m_message;
+		m_message = nullptr;
 
-    const char* ErrorState::message() const
-    {
-        return m_MessageAddress;
-    }
-
-    std::ostream& operator<<(std::ostream& os, const ErrorState& em)
-    {
-        if (!em.isClear())
-        {
-            os << em.message();
-        }
-        return os;
-    }
+		m_message = new char[length + 1];
+		for (int i = 0; i < length; i++)
+		{
+			m_message[i] = str[i];
+		}
+		m_message[length] = '\0';
+	}
+	const char * ErrorState::message() const
+	{
+		return m_message;
+	}
+	std::ostream & operator<<(std::ostream& os, const ErrorState & er)
+	{
+		if (!er.isClear())
+		{
+			os << er.message();
+		}
+		return os;
+	}
 }
+
