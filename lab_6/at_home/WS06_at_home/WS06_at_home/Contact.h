@@ -26,6 +26,9 @@ namespace sict
 
 	private:
 		bool isValidPhoneNumber(const long long);
+		bool isStringValid(const char* string);
+		void storeStringCCS(const char* name);
+		void storePhoneNumbersCLL(const long long* phoneNumbers, const int noOfPhoneNumbers);
 	};
 }
 #endif
