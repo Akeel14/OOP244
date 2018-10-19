@@ -25,10 +25,10 @@ namespace sict
         Contact& operator+=(long long phoneNumber);
 
 	private:
-		bool isValidPhoneNumber(const long long);
+		bool checkValidPhone(const long long);
 		bool isStringValid(const char* string);
-		void storeStringCCS(const char* name);
-		void storePhoneNumbersCLL(const long long* phoneNumbers, const int noOfPhoneNumbers);
+		void storeName(const char* name);
+		void storePhoneNumbers(const long long* phoneNumbers, const int noOfPhoneNumbers);
 	};
 }
 #endif
