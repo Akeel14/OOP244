@@ -6,33 +6,37 @@
 
 namespace sict
 {
-
-	bool Contact::isValidPhoneNumber(const long long phoneNumber)
+	bool Contact::checkValidPhone(const long long phoneNumber)
 	{
 		std::string phoneNumberString = std::to_string(phoneNumber);
-		bool phoneInvalid = phoneNumber <= 0 || phoneNumberString.length() < 11 || phoneNumberString.length() > 12 || phoneNumberString[phoneNumberString.length() - 7] == '0' || phoneNumberString[phoneNumberString.length() - 10] == '0';
-		return !phoneInvalid;
+		bool isPhoneInvalid = phoneNumber <= 0 || phoneNumberString.length() < 11 || phoneNumberString.length() > 12 || phoneNumberString[phoneNumberString.length() - 7] == '0' || phoneNumberString[phoneNumberString.length() - 10] == '0';
+		
+		// ! because the function checks if the phone is valid
+		return !isPhoneInvalid;	
 	}
 	bool Contact::isStringValid(const char* string)
 	{
-		return (string != nullptr && string[0] != '\0');
+		bool stringEmptyNull = string != nullptr && string[0] != '\0';
+		return stringEmptyNull;
 	}
 	bool Contact::isEmpty() const
 	{
-		return (m_name[0] == '\0' && m_phoneNumbers == nullptr && m_noOfPhoneNumbers == 0) ? true : false;
+		// Check if either Name, m_phoneNumbers pointers, and m_noOfPhoneNumbers is empty or null
+		bool checkNamePhoneNumberPhones = m_name[0] == '\0' && m_phoneNumbers == nullptr && m_noOfPhoneNumbers == 0;
+		return checkNamePhoneNumberPhones;
 	}
-	void Contact::storeStringCCS(const char* name)
+	void Contact::storeName(const char* name)
 	{
 		if (isStringValid(name))
 		{
 			std::string s_name(name, strlen(name));
-			std::strncpy(m_name, s_name.c_str(), sizeof(m_name));
-			m_name[sizeof(m_name) - 1] = '\0';
+			std::strncpy(m_name, s_name.c_str(), strlen(name));
+			m_name[strlen(name) - 1] = '\0';
 		}
 		else
 			m_name[0] = '\0';
 	}
-	void Contact::storePhoneNumbersCLL(const long long* phoneNumbers, const int noOfPhoneNumbers)
+	void Contact::storePhoneNumbers(const long long* phoneNumbers, const int noOfPhoneNumbers)
 	{
 		if (phoneNumbers != nullptr && noOfPhoneNumbers > 0)
 		{
@@ -43,9 +47,9 @@ namespace sict
 			// Store the phone numbers
 			for (int i = 0; i < noOfPhoneNumbers; ++i)
 			{
-				if (isValidPhoneNumber(phoneNumbers[i]))
+				if (checkValidPhone(phoneNumbers[i]))
 				{
-					m_noOfPhoneNumbers += 1;
+					m_noOfPhoneNumbers++;
 					m_phoneNumbers[m_noOfPhoneNumbers - 1] = phoneNumbers[i];
 				}
 			}
@@ -64,10 +68,9 @@ namespace sict
 	}
 
 	Contact::Contact(const char *name, const long long *phoneNumbers, const int noOfPhoneNumbers)
-		// Gets the data when the object is created: name, phoneNumbers, number of phoneNumbers in the array
 	{
-		storeStringCCS(name);
-		storePhoneNumbersCLL(phoneNumbers, noOfPhoneNumbers);
+		storeName(name);
+		storePhoneNumbers(phoneNumbers, noOfPhoneNumbers);
 	}
 
 	void Contact::display() const

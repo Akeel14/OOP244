@@ -24,10 +24,10 @@ namespace sict
 		Contact& operator=(const Contact& other) = delete;
 
 	private:
-		bool isValidPhoneNumber(const long long);
+		bool checkValidPhone(const long long);
 		bool isStringValid(const char*);
-		void storeStringCCS(const char*);
-		void storePhoneNumbersCLL(const long long* phoneNumbers, const int noOfPhoneNumbers);
+		void storeName(const char*);
+		void storePhoneNumbers(const long long* phoneNumbers, const int noOfPhoneNumbers);
 	};
 }
 #endif

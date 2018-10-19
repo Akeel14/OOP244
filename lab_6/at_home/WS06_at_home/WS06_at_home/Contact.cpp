@@ -59,12 +59,14 @@ namespace sict
 		: m_noOfPhoneNumbers(0),
 		  m_phoneNumbers(nullptr)
 	{
+		std::cout << "Contact::Contact()" << std::endl;
 		m_name[0] = '\0';
 	}
 
 	// Gets the data when the object is created: name, phoneNumbers, number of phoneNumbers in the array
 	Contact::Contact(const char* name, const long long* phoneNumbers, const int noOfPhoneNumbers)
 	{
+		std::cout << "Contact::Contact(const char* name, const long long* phoneNumbers, const int noOfPhoneNumbers)" << std::endl;
 		if (isStringValid(name))
 		{
 			storeStringCCS(name);
@@ -112,6 +114,7 @@ namespace sict
 
     Contact& Contact::operator=(const Contact& rhs)
     {
+		std::cout << "Contact& Contact::operator=(const Contact& rhs)" << std::endl;
         if (this != &rhs) 
         {
             strncpy(m_name, rhs.m_name, strlen(rhs.m_name));
