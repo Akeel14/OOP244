@@ -4,9 +4,10 @@
 
 #include "iAccount.h"
 
-namespace sict {
-   
-	class Account : public iAccount {
+namespace sict 
+{
+	class Account : public iAccount 
+	{
 		double m_Balance;
 	protected:
 		double balance() const;
