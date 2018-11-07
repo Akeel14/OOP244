@@ -16,21 +16,19 @@ using namespace std;
 namespace sict 
 {
     Hero::Hero()
+		: m_Health(0),
+		  m_Attack(0)
     {
         m_Name[0] = '\0';
-        m_Health = 0;
-        m_Attack = 0;
     }
 
     Hero::Hero(const char* p_Name, int p_Health, int p_Attack)
     {
-        bool v_Name = p_Name != nullptr && p_Name[0] != '\0';
-        bool v_Health = p_Health > 0;
-        bool v_Attack = p_Attack > 0;
+		bool parametersValid = (p_Name != nullptr && p_Name[0] != '\0') && (p_Health > 0) && (p_Attack > 0);
 
-        if (v_Name && v_Health && v_Attack)
+        if (parametersValid)
         {
-            strcpy(m_Name, p_Name);
+            strncpy(m_Name, p_Name);
             m_Health = p_Health;
             m_Attack = p_Attack;            
         }

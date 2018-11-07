@@ -17,9 +17,9 @@ namespace sict
     class Hero
     {
     private:
-        char m_Name[41];
         int m_Health;
         int m_Attack;
+        char m_Name[41];
     public:
         Hero();
         Hero(const char* p_Name, int p_Health, int p_Attack);
